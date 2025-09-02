@@ -10,7 +10,7 @@ resource "aws_instance" "docker_vm" {
  
 
   tags = {
-    Name = "MyEc2Instance"
+    Name = "MyDockerVM"
   }
 
 }
@@ -23,10 +23,11 @@ resource "aws_instance" "minikube_vm" {
  
 
   tags = {
-    Name = "MyEc2Instance"
+    Name = "MyMinikubeVM"
   }
 
 }
+
 
 
 
