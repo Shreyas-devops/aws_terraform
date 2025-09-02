@@ -6,7 +6,7 @@ resource "aws_instance" "app_server" {
   ami           = "ami-0861f4e788f5069dd"
   instance_type = "t2.micro"
   vpc_security_group_ids = [sg-0137a88aa4803802d]
-  user_data = <<-EOF #!/bin/bash
+  user_data = << EOF #!/bin/bash
      sudo yum update -y
      echo 'Installing docker on $(hostname)'
     sudo yum install docker -y
@@ -37,3 +37,4 @@ resource "aws_instance" "app_server" {
   }
 
 }
+
