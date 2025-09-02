@@ -12,9 +12,9 @@ environment {
         stage('Terraform Init') {
             steps {
                 withAWS(credentials: 'AWS IAM'){
-                  sh 'terraform init'
-                  sh 'terraform plan' 
-                  sh 'terraform apply -auto-approve'
+                  powershell 'terraform init'
+                  powershell 'terraform plan' 
+                  powershell 'terraform apply -auto-approve'
                 }
             }
         }
