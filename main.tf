@@ -22,7 +22,7 @@ resource "aws_instance" "app_server" {
      echo 'Running Docker hello-world'
      docker  run 'hello-world'
      echo 'Installing Docker-compose...'
-     sudo curl -L "https://github.com/docker/compose/releases/download/v2.39.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+     sudo curl -L 'https://github.com/docker/compose/releases/download/v2.39.2/docker-compose-$(uname -s)-$(uname -m)' -o /usr/local/bin/docker-compose
      sudo chmod +x /usr/local/bin/docker-compose
      echo 'Docker Compose Installed.'
      docker-compose --version
@@ -38,6 +38,7 @@ resource "aws_instance" "app_server" {
   }
 
 }
+
 
 
 
