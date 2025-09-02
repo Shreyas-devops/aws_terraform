@@ -9,21 +9,14 @@ pipeline {
         }
         stage('Terraform Init') {
             steps {
-                sh 'terraform init'
+                withAWS(credentials: 'AWS IAM'){
+                  sh 'terraform init'
+                  sh 'terraform plan 
+                  sh 'terraform apply -auto-approve 
+                }
             }
         }
-        stage('Terraform Plan') {
-            steps {
-                sh 'terraform plan -out=tfplan'
-            }
-        }
-        stage('Terraform Apply') {
-            steps {
-                // Add input step for manual approval if desired
-                input 'Proceed with Terraform Apply?'
-                sh 'terraform apply -auto-approve tfplan'
-            }
-        }
+        
         
     }
 }
