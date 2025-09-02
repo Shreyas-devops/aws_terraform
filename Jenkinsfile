@@ -1,8 +1,5 @@
 pipeline {
     agent any
-environment {
-            PATH = "C:/Program Files/Git/bin/:${env.PATH}"
-        }
     stages {
         stage('Checkout') {
             steps {
@@ -13,12 +10,27 @@ environment {
             steps {
                 withAWS(credentials: 'AWS IAM'){
                   powershell 'terraform init'
+                                  }
+            }
+            
+        }
+         stage('Terraform Plan') {
+            steps {
+                withAWS(credentials: 'AWS IAM'){
                   powershell 'terraform plan' 
                   powershell 'terraform apply -auto-approve'
                 }
             }
+            
         }
-        
+         stage('Terraform Apply') {
+            steps {
+                withAWS(credentials: 'AWS IAM'){
+                  powershell 'terraform apply -auto-approve'
+                }
+            }
+            
+        }
         
     }
 }
