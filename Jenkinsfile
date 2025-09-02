@@ -11,7 +11,7 @@ pipeline {
             steps {
                 withAWS(credentials: 'AWS IAM'){
                   sh 'terraform init'
-                  sh 'terraform plan 
+                  sh 'terraform plan' 
                   sh 'terraform apply -auto-approve 
                 }
             }
