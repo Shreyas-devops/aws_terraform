@@ -17,16 +17,25 @@ pipeline {
          stage('Terraform Plan') {
             steps {
                 withAWS(credentials: 'AWS IAM'){
-                  powershell 'terraform plan' 
-                  powershell 'terraform apply -auto-approve'
+       powershell 'terraform plan -out=tfplan'
                 }
             }
             
         }
+         stage('Manual Approval for Apply') {
+            steps {
+                script {
+                    timeout(time: 10, unit: 'MINUTES') { // Optional: Set a timeout for approval
+                        input message: 'Proceed with Terraform Apply?', ok: 'Approve', submitter: 'your_team_group' // Restrict submitters
+                    }
+                }
+            }
+        }
          stage('Terraform Apply') {
             steps {
                 withAWS(credentials: 'AWS IAM'){
-                  powershell 'terraform apply -auto-approve'
+                 
+                  powershell 'terraform apply -auto-approve tfplan'
                 }
             }
             
