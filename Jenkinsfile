@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Terraform output') {
             steps {
-               powershell echo 'public IP is -> $env.INSTANCE_IP'
+               powershell 'echo public IP is -> $env.INSTANCE_IP'
             }
             
         }
