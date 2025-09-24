@@ -36,10 +36,16 @@ pipeline {
                 withAWS(credentials: 'AWS IAM'){
                  
                   powershell 'terraform apply -auto-approve tfplan'
+                  powershell env.INSTANCE_IP = 'terraform output -raw instance_public_ip'  
                 }
             }
             
         }
-        
+        stage('Terraform output') {
+            steps {
+               powershell 'echo public IP is -> $env.INSTANCE_IP'
+            }
+            
+        }
     }
 }
