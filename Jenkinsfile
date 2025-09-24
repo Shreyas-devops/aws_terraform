@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        INSTANCE_IP = ''
+    }
     stages {
         stage('Checkout') {
             steps {
