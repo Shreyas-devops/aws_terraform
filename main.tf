@@ -21,10 +21,6 @@ resource "aws_instance" "docker_vm" {
 
 }
 
-output "instance_public_ip" {
-  description = "The public IP address of the EC2 instance"
-  value       = aws_instance.docker_vm.public_ip
-}
 
 resource "aws_instance" "minikube_vm" {
   ami                     = "ami-0861f4e788f5069dd"
@@ -49,6 +45,7 @@ output "instance_public_ip2" {
   description = "The public IP address of the EC2 instance"
   value       = aws_instance.minikube_vm.public_ip
 }
+
 
 
 
